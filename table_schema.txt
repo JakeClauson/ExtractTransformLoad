@@ -1,0 +1,31 @@
+CREATE TABLE public.accidental_deaths(
+    id integer NOT NULL DEFAULT nextval('accidental_deaths_id_seq'::regclass),
+    state character varying(25) COLLATE pg_catalog."default" NOT NULL,
+    incident_date date NOT NULL,
+    "# Killed" integer NOT NULL,
+    age character varying(10) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT accidental_deaths_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE public.deaths_by_state(
+    year integer NOT NULL,
+    state character varying(25) COLLATE pg_catalog."default" NOT NULL,
+    deaths integer NOT NULL,
+    CONSTRAINT deaths_by_state_state_fkey FOREIGN KEY (state)
+        REFERENCES public.registered_firearms (states)
+);
+
+CREATE TABLE public.registered_firearms
+(
+    states character varying(25) COLLATE pg_catalog."default" NOT NULL,
+    "Regestired Firearms 10" integer NOT NULL,
+    "Regestired Firearms 11" integer NOT NULL,
+    "Regestired Firearms 12" integer NOT NULL,
+    "Regestired Firearms 13" integer NOT NULL,
+    "Regestired Firearms 14" integer NOT NULL,
+    "Regestired Firearms 15" integer NOT NULL,
+    "Regestired Firearms 16" integer NOT NULL,
+    "Regestired Firearms 17" integer NOT NULL,
+    "Regestired Firearms 18" integer NOT NULL,
+    CONSTRAINT registered_firearms_pkey PRIMARY KEY (states)
+);
